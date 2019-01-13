@@ -3,7 +3,7 @@ import {NavList} from './NavList';
 import {Logo} from './Logo';
 import {data} from '../data';
 
-export class Nav extends React.Component {
+export class Header extends React.Component {
     render() {
         return (
             <nav className="uk-navbar-container uk-margin" data-uk-navbar>

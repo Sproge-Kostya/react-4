@@ -1,12 +1,12 @@
 import {Logo} from './Logo';
-import {Nav} from './Nav';
+import {Header} from './Header';
 import {Pagination} from './Pagination';
 import {Breadcrumb} from './Breadcrumb';
 import {CommentForm} from './CommentForm';
 
 export {
     Logo,
-    Nav,
+    Header,
     Pagination,
     Breadcrumb,
     CommentForm
