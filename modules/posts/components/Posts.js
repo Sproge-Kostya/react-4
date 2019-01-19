@@ -1,22 +1,18 @@
 import React from "react";
 import {data} from "../../../data";
-import {getPosts} from "../../../api/api";
+import {getPosts, getPostsTest} from "../../../api/api";
 import {Articles} from "./Articles";
 import {Pagination} from "../../../components/index";
 
 export class Posts extends React.Component {
     constructor(props) {
         super(props);
-        this.pageChange = this.pageChange.bind(this);
+        this.onClickPagination = this.onClickPagination.bind(this);
         this.state = {
             page: 1,
-            limit: data.pagination.limit,
-            items: [],
-            item: [],
+            posts: [],
             pagination: {
-                total: 1,
-                page: 1,
-                pages: [],
+                total: 100,
                 limit: 6
             }
         };
@@ -25,42 +21,31 @@ export class Posts extends React.Component {
     componentDidMount() {
         getPosts({
             limit: this.state.pagination.limit,
-            page: this.state.pagination.limit
+            page: this.state.page
         })
         .then(posts => {
             this.setState({
-                item: posts
+                posts: posts.json,
+                pagination: {
+                    total: +posts.count,
+                    limit: this.state.pagination.limit
+                }
+            });
+        });
+    }
+
+    onClickPagination(current, e) {
+        e.preventDefault();
+        getPosts({
+            limit: this.state.pagination.limit,
+            page: current
+        })
+        .then(posts => {
+            this.setState({
+                page: current,
+                posts: posts.json
             })
         })
-    }
-
-    componentWillMount() {
-        this.newArr(this.state.page)
-    }
-
-    newArr(page) {
-        const data = this.state.items;
-        const pageSize = this.state.limit;
-        const currentPage = page;
-        const upperLimit = currentPage * pageSize;
-        const dataSlice = data.slice((upperLimit - pageSize), upperLimit);
-        this.setState({
-            item: dataSlice,
-            pagination: {
-                total: dataSlice.length,
-                page: 1,
-                pages: [],
-                limit: 6
-            }
-        });
-    }
-
-    pageChange(curr, e) {
-        e.preventDefault();
-        this.setState({
-            page: curr
-        });
-        this.newArr(curr);
     }
 
     render() {
@@ -68,8 +53,23 @@ export class Posts extends React.Component {
             <main className="uk-main">
                 <div className="uk-section">
                     <div className="uk-container">
-                        <Articles item={this.state.item}/>
-                        <Pagination data={this.state.pagination} handelClick={this.pageChange}/>
+                        <form className="uk-margin-bottom uk-flex uk-flex-right">
+                            <select name="order" className="uk-select uk-width-small">
+                                <option value="asc">ASC</option>
+                                <option value="desc">DESC</option>
+                            </select>
+                            <select name="limit" className="uk-select uk-width-small uk-margin-left">
+                                <option value="6">6</option>
+                                <option value="12">12</option>
+                                <option value="24">24</option>
+                            </select>
+                        </form>
+                        <Articles posts={this.state.posts}/>
+                        <Pagination
+                            limit={this.state.pagination.limit}
+                            total={this.state.pagination.total}
+                            page={this.state.page}
+                            handelClick={this.onClickPagination}/>
                     </div>
                 </div>
             </main>

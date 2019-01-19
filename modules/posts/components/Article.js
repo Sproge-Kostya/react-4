@@ -7,7 +7,7 @@ export class Article extends React.Component {
             <div>
                 <div className="uk-card uk-card-default uk-margin-medium-bottom">
                     <div className="uk-card-header">
-                        <h3 className="uk-card-title uk-margin-remove-bottom">{this.props.data.title}</h3>
+                        <h3 className="uk-card-title uk-margin-remove-bottom">{this.props.data.id} {this.props.data.title}</h3>
                     </div>
                     <div className="uk-card-body">
                         <p>{this.props.data.body}</p>
