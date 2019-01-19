@@ -1,5 +1,4 @@
 import React from "react";
-import {data} from "../../../data";
 import {getPosts, getPostsTest} from "../../../api/api";
 import {Articles} from "./Articles";
 import {Pagination} from "../../../components/index";
@@ -12,7 +11,7 @@ export class Posts extends React.Component {
             page: 1,
             posts: [],
             pagination: {
-                total: 100,
+                total: 1,
                 limit: 6
             }
         };
@@ -66,8 +65,7 @@ export class Posts extends React.Component {
                         </form>
                         <Articles posts={this.state.posts}/>
                         <Pagination
-                            limit={this.state.pagination.limit}
-                            total={this.state.pagination.total}
+                            totalPage={Math.ceil(this.state.pagination.total / this.state.pagination.limit)}
                             page={this.state.page}
                             handelClick={this.onClickPagination}/>
                     </div>

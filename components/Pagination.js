@@ -5,7 +5,7 @@ export class Pagination extends React.Component {
         super(props);
         this.state = {
             page: this.props.page || 1,
-            totalPage: Math.ceil(this.props.total / this.props.limit),
+            totalPage: this.props.totalPage,
             pages: [],
             pageNav: []
         };
@@ -13,14 +13,28 @@ export class Pagination extends React.Component {
 
     componentDidMount() {
         this.setState({
-            pages: [...this.generateArray(this.state.totalPage)]
+            pages: [...this.generateArray(this.props.totalPage)]
         });
         this.setState((state) => {
             return {
-                pageNav: [...this.genPages(state.pages, state.page)]
+                pageNav: [...this.genPages(state.pages, this.props.page)]
             };
         });
     }
+
+    componentDidUpdate(prevProps){
+        if(this.props.totalPage !== prevProps.totalPage){
+            this.setState({
+                pages: [...this.generateArray(this.props.totalPage)]
+            });
+            this.setState((state) => {
+                return {
+                    pageNav: [...this.genPages(state.pages, this.props.page)]
+                };
+            });
+        }
+    }
+
 
     generateArray(totalPage) {
         return (function (n) {
@@ -30,7 +44,7 @@ export class Pagination extends React.Component {
     }
 
     genPages(pages, current) {
-        const {totalPage} = this.state;
+        const totalPage = this.props.totalPage;
         const first = page => page === 1;
         const middle = (page, between) => page > between.bet && page <= between.ween;
         const last = page => page === totalPage;
@@ -88,7 +102,6 @@ export class Pagination extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <ul className="uk-pagination uk-flex-center" data-uk-margin>
                 <li onClick={(e) => this.onClick(this.state.page, 'previous', e)}>
