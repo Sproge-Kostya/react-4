@@ -10,7 +10,8 @@ export class Posts extends React.Component {
         this.state = {
             page: 1,
             posts: [],
-            order: 'asc',
+            order: 'desc',
+            view: 'grid',
             pagination: {
                 total: 1,
                 limit: 6
@@ -19,10 +20,14 @@ export class Posts extends React.Component {
     }
 
     componentDidMount() {
-        getPosts({
-            limit: this.state.pagination.limit,
-            page: this.state.page
-        })
+        getPosts('/posts', {
+                params: {
+                    _limit: this.state.pagination.limit,
+                    _page: this.state.page,
+                    _order: this.state.order,
+                    _sort: 'id'
+                }
+            })
             .then(posts => {
                 this.setState({
                     posts: posts.json,
@@ -36,23 +41,60 @@ export class Posts extends React.Component {
 
     onClickPagination(current, e) {
         e.preventDefault();
-        getPosts({
-            limit: this.state.pagination.limit,
-            page: current
+        getPosts('/posts', {
+            params: {
+                _limit: this.state.pagination.limit,
+                _page: current,
+                _order: this.state.order
+            }
         })
-            .then(posts => {
-                this.setState({
-                    page: current,
-                    posts: posts.json
-                })
+        .then(posts => {
+            this.setState({
+                page: current,
+                posts: posts.json
             })
+        })
+    }
+
+    onClickView(){
+        let target = e.currentTarget.value;
+        if(target === 'grid'){
+            this.setState({
+                view:'grid'
+            })
+        }else{
+            this.setState({
+                view:'list'
+            })
+        }
+    }
+
+    onClickOrder(event){
+        let value = event.target.value;
+        getPosts('/posts',{
+            params: {
+                _limit: this.state.pagination.limit,
+                _page: this.state.page,
+                _sort: 'id',
+                _order: value
+            }
+        })
+        .then(posts => {
+            this.setState({
+                posts: posts.json,
+                order: value
+            })
+        });
     }
 
     onClickLimit(event) {
         let value = event.target.value;
-        getPosts({
-            limit: value,
-            page: this.state.page
+        getPosts('/posts',{
+            params: {
+                _limit: value,
+                _page: this.state.page,
+                _order: this.state.order
+            }
         })
             .then(posts => {
                 this.setState({
@@ -74,7 +116,9 @@ export class Posts extends React.Component {
                             <form className="uk-width-medium uk-margin-right">
                                 <input className="uk-input" type="search" placeholder="Search..."/>
                             </form>
-                            <select name="order" className="uk-select uk-width-small" defaultValue={this.state.order}>
+                            <select name="order" className="uk-select uk-width-small"
+                                    onChange={(e) => this.onClickOrder(e)}
+                                    value={this.state.order}>
                                 <option value="asc">ASC</option>
                                 <option value="desc">DESC</option>
                             </select>
@@ -86,11 +130,13 @@ export class Posts extends React.Component {
                                 <option value="24">24</option>
                             </select>
                             <div className="uk-button-group uk-margin-left">
-                                <button className="uk-button uk-button-default">
-                                    <span uk-icon="icon:  grid"></span>
+                                <button onClick={(e)=>this.onClickView(e)} value='grid'
+                                        className={`uk-button uk-button-default` + ` ${this.state.view === 'grid' ? 'uk-active' : ''}`}>
+                                    <span uk-icon="icon:grid"></span>
                                 </button>
-                                <button className="uk-button uk-button-default uk-active">
-                                    <span uk-icon="icon:  list"></span>
+                                <button onClick={(e)=>this.onClickView(e)} value='list'
+                                        className={`uk-button uk-button-default ` + ` ${this.state.view === 'list' ? 'uk-active' : ''}`}>
+                                    <span uk-icon="icon:list"></span>
                                 </button>
                             </div>
                         </div>
