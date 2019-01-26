@@ -1,11 +1,17 @@
 import React from "react";
 
 export class Card extends React.Component {
+    constructor(props){
+        super(props);
+        console.log(this.props.data);
+    }
     render() {
         return (
-            <div className="uk-card uk-card-default uk-card-body">
-                <div className="uk-label">Completed</div>
-                <h3 className="uk-card-title uk-margin-small">delectus aut autem</h3>
+            <div>
+                <div className="uk-card uk-card-default uk-card-body">
+                    <div className={this.props.data.completed?"uk-label":"uk-label uk-label-danger"} >{this.props.data.completed ? 'Completed': 'Actived'}</div>
+                    <h3 className="uk-card-title uk-margin-small">{this.props.data.title}</h3>
+                </div>
             </div>
         )
     }

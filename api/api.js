@@ -4,15 +4,17 @@ export function getPosts(path,options) {
     let url = `${API + path}`;
     let params = "";
 
-    if(options && options.hasOwnProperty('params'))
+    if(options && options.hasOwnProperty('params')){
         for (let key in options.params) {
             if (params != "") {
                 params += "&";
             }
             params += key + "=" + options.params[key];
-        }
 
-    url += `${params ? '?' + params : ''}`;
+        }
+        url += `${params ? '?' + params : ''}`;
+    }
+
     return fetch(url)
         .then(response => {
             return response.json().then(json =>{
