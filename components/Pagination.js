@@ -102,7 +102,6 @@ export class Pagination extends React.Component {
     }
 
     render() {
-        console.log(this.state.pageNav);
         return (
             <ul className="uk-pagination uk-flex-center" data-uk-margin>
                 <li onClick={(e) => this.onClick(this.state.page, 'previous', e)}>

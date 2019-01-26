@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavList} from './NavList';
+import {NavLinks} from './NavLinks';
 import {Logo} from './Logo';
 import {data} from '../data';
 
@@ -9,7 +9,7 @@ export class Header extends React.Component {
             <nav className="uk-navbar-container uk-margin" data-uk-navbar>
                 <div className="uk-navbar-left">
                     <Logo title="Logo"/>
-                    <NavList data={data.items}/>
+                    <NavLinks data={data.items}/>
                 </div>
             </nav>
         )
