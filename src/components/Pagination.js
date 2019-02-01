@@ -105,7 +105,7 @@ export class Pagination extends React.Component {
         return (
             <ul className="uk-pagination uk-flex-center" data-uk-margin>
                 <li onClick={(e) => this.onClick(this.state.page, 'previous', e)}>
-                    <a href="#">
+                    <span >
                         <span data-uk-pagination-previous>
                             <svg
                                 width={7}
@@ -122,39 +122,39 @@ export class Pagination extends React.Component {
                             />
                             </svg>
                         </span>
-                    </a href="#">
+                    </span>
                 </li>
                 {
                     this.state.pageNav.map(page => {
                         return (
                             <li key={page} onClick={(e) => this.onClick(Number(page), '', e)}
                                 className={page === this.props.page ? 'uk-active' : ''}>
-                                <a href="">
+                                <span>
                                     {page}
-                                </a>
+                                </span>
                             </li>
                         );
                     })
                 }
                 <li onClick={(e) => this.onClick(this.state.page, 'next', e)}>
-                    <a href="">
-                <span data-uk-pagination-next>
-                    <svg
-                        width={7}
-                        height={12}
-                        viewBox="0 0 7 12"
-                        xmlns="http://www.w3.org/2000/svg"
-                        ratio={1}
-                    >
-                    <polyline
-                        fill="none"
-                        stroke="#000"
-                        strokeWidth="1.2"
-                        points="1 1 6 6 1 11"
-                    />
-                    </svg>
-                </span>
-                    </a>
+                    <span>
+                        <span data-uk-pagination-next>
+                            <svg
+                                width={7}
+                                height={12}
+                                viewBox="0 0 7 12"
+                                xmlns="http://www.w3.org/2000/svg"
+                                ratio={1}
+                            >
+                            <polyline
+                                fill="none"
+                                stroke="#000"
+                                strokeWidth="1.2"
+                                points="1 1 6 6 1 11"
+                            />
+                            </svg>
+                        </span>
+                    </span>
                 </li>
             </ul>
         );

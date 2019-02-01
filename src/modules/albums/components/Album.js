@@ -26,20 +26,6 @@ export class Album extends React.Component {
         for(let i = 0; i < this.state.photos.length; i++){
             items.push({'source':this.state.photos[i].url,"caption":this.state.photos[i].title});
         }
-
-        // console.log(this.state.photos.length);
-        //
-        // let items;
-        // for(let i = 0; i < this.state.photos.length; i++){
-        //     console.log(this.state.photos[i]);
-        // }
-        // console.log(items);
-        // UIkit.lightboxPanel({
-        //     items: [
-        //         {source: 'https://getuikit.com/assets/uikit/tests/images/size1.jpg', caption: 'Caption 1'},
-        //         {source: 'https://getuikit.com/assets/uikit/tests/images/size2.jpg', caption: 'Caption 2'},
-        //     ]
-        // }).show();
     }
     render() {
         return (
