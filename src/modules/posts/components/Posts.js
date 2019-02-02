@@ -22,26 +22,47 @@ export class Posts extends React.Component {
 
     componentDidMount() {
         getData('/posts', {
-                params: {
-                    _limit: this.state.pagination.limit,
-                    _page: this.state.page,
-                    _order: this.state.order,
-                    _sort: 'id'
+            params: {
+                _limit: this.state.pagination.limit,
+                _page: this.state.page,
+                _order: this.state.order,
+                _sort: 'id'
+            }
+        })
+        .then(posts => {
+            this.setState({
+                posts: posts.json,
+                pagination: {
+                    total: +posts.count,
+                    limit: this.state.pagination.limit
                 }
-            })
-            .then(posts => {
-                this.setState({
-                    posts: posts.json,
-                    pagination: {
-                        total: +posts.count,
-                        limit: this.state.pagination.limit
-                    }
-                });
             });
+        });
+    }
+
+    handleSearch = (value) => {
+        getData('/posts', {
+            params: {
+                _limit: this.state.pagination.limit,
+                _page: this.state.page,
+                _order: this.state.order,
+                q: value
+            }
+        })
+        .then(posts => {
+            this.setState({
+                posts: posts.json,
+                pagination: {
+                    total: +posts.count,
+                    limit: this.state.pagination.limit
+                }
+            });
+        });
     }
 
     helperChangeToolbar(data){
         console.log(data);
+        this.setState(data);
         // this.setState({
         //     page: data.page,
         //     posts: data.posts,
@@ -94,7 +115,7 @@ export class Posts extends React.Component {
             <main className="uk-main">
                 <div className="uk-section">
                     <div className="uk-container">
-                        <Toolbar data={this.state} onChangeToolbar={this.helperChangeToolbar}/>
+                        <Toolbar data={this.state} onChangeSearch={this.handleSearch} onChangeToolbar={this.helperChangeToolbar}/>
                         <Articles posts={this.state.posts} view={this.state.view}/>
                         <Pagination
                             totalPage={Math.ceil(this.state.pagination.total / this.state.pagination.limit)}

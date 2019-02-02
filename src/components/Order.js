@@ -1,36 +1,24 @@
 import React from 'react';
 
-export class Order extends React.Component{
-    constructor(props){
+export class Order extends React.Component {
+    constructor(props) {
         super(props);
+        // change context later
+        this.state = {
+            options: ["asc", "desc"]
+        }
     }
 
-    onClickOrder(event){
-        let value = event.target.value;
-        this.props.handelChange('order',value);
-        // getPosts('/posts',{
-        //     params: {
-        //         _limit: this.state.pagination.limit,
-        //         _page: this.state.page,
-        //         _sort: 'id',
-        //         _order: value
-        //     }
-        // })
-        // .then(posts => {
-        //     this.setState({
-        //         posts: posts.json,
-        //         order: value
-        //     });
-        // });
-    }
-
-    render(){
-        return(
+    render() {
+        return (
             <select name="order" className="uk-select uk-width-small"
-                    onChange={(e) => this.onClickOrder(e)}
+                    onChange={(e) => this.props.handelChange('order', e.target.value)}
                     value={this.props.data}>
-                <option value="asc">ASC</option>
-                <option value="desc">DESC</option>
+                {
+                    this.state.options.map(item => {
+                        return <option key={item} value={item}>{item}</option>
+                    })
+                }
             </select>
         )
     }

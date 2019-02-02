@@ -3,21 +3,21 @@ import React from 'react';
 export class Limiter extends React.Component{
     constructor(props){
         super(props);
-    }
-
-    onClickLimit(event) {
-        let value = event.target.value;
-        this.props.handelChange('limit',value);
+        this.state = {
+            options: ["6","12","24"]
+        }
     }
 
     render() {
         return (
             <select name="limit" className="uk-select uk-width-small uk-margin-left"
-                    onChange={(e) => this.onClickLimit(e)}
+                    onChange={(e) => this.props.handelChange('pagination.limit',e.target.value)}
                     value={this.props.data}>
-                <option value="6">6</option>
-                <option value="12">12</option>
-                <option value="24">24</option>
+                {
+                    this.state.options.map(item => {
+                        return <option key={item} value={item}>{item}</option>
+                    })
+                }
             </select>
         )
     }

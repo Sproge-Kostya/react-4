@@ -1,5 +1,5 @@
 import React from "react";
-import Uikit from "uikit";
+import UIkit from 'uikit'
 import {getData} from "../../../api/api";
 
 export class Album extends React.Component {
@@ -17,20 +17,27 @@ export class Album extends React.Component {
                 albumId:1
             }
         })
-        .then(photos => {
-            this.setState({
-                photos: photos.json,
-            });
+        .then(data => {
+
+            const photos = data.json;
+
+            UIkit.lightboxPanel({
+                items: photos.map((photos)=>{
+                    return {
+                        source: `${photos.url}.jpg`,
+                        caption: photos.title
+                    }
+                })
+            }).show();
+
         });
-        let items;
-        for(let i = 0; i < this.state.photos.length; i++){
-            items.push({'source':this.state.photos[i].url,"caption":this.state.photos[i].title});
-        }
     }
     render() {
         return (
             <tr>
-                <td><span uk-icon="icon: album; ratio: 2"></span></td>
+                <td>
+                    <span data-uk-icon="icon: album; ratio: 2"></span>
+                </td>
                 <td>{this.props.data.title}</td>
                 <td>
                     <a href="#" onClick={(e)=>this.onClickPhotos(e)} className="uk-button uk-button-primary js-lightbox">Open album</a>
