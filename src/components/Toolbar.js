@@ -2,10 +2,6 @@ import React from 'react';
 import {Search, Limiter, Modes, Order} from "./index";
 
 export class Toolbar extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     helperChange = (key, value) => {
         const path = key.split('.');
         const depth = path.length;
@@ -25,7 +21,7 @@ export class Toolbar extends React.Component {
         }
 
         this.props.onChangeToolbar(newstate);
-    }
+    };
 
     render() {
         return (

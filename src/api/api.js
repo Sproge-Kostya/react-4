@@ -8,7 +8,7 @@ export function getData(path,options) {
 
     if(options && options.hasOwnProperty('params')){
         for (let key in options.params) {
-            if (params != "") {
+            if (params !== "") {
                 params += "&";
             }
             params += key + "=" + options.params[key];

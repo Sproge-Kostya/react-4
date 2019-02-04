@@ -5,7 +5,6 @@ import {getData} from "../../../api/api";
 export class Photos extends React.Component {
     constructor(props){
         super(props);
-        // this.onClickPagination = this.onClickPagination.bind(this);
         this.state ={
             photos:[],
             page:1,

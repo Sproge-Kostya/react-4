@@ -19,10 +19,11 @@ export class Modes extends React.Component{
                 view:'list'
             })
         }
-        this.props.handelChange('view',this.state.view);
+        this.props.handelChange('view',target);
     }
 
     render(){
+        console.log(this.state.view);
         return(
             <div className="uk-button-group uk-margin-left">
                 <button onClick={(e)=>this.onClickView(e)} value='grid'

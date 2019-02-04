@@ -22,4 +22,3 @@ export class NavLinks extends React.Component {
         );
     }
 }
-{/*<LinkJs key={item.id} name={item.title} url={item.url}/>*/}

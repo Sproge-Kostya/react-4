@@ -1,7 +1,7 @@
 import React from "react";
 import {Album} from "./Album";
 import {getData} from "../../../api/api";
-import {Pagination,Toolbar} from "../../../components/index";
+import {Pagination} from "../../../components/index";
 
 export class Albums extends React.Component {
     constructor(props){

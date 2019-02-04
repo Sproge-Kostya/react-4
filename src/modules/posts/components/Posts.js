@@ -6,8 +6,6 @@ import {Pagination,Toolbar} from "../../../components/index";
 export class Posts extends React.Component {
     constructor(props) {
         super(props);
-        this.onClickPagination = this.onClickPagination.bind(this);
-        this.helperChangeToolbar = this.helperChangeToolbar.bind(this);
         this.state = {
             page: 1,
             posts: [],
@@ -58,41 +56,10 @@ export class Posts extends React.Component {
                 }
             });
         });
-    }
+    };
 
-    helperChangeToolbar(data){
-        console.log(data);
-        this.setState(data);
-        // this.setState({
-        //     page: data.page,
-        //     posts: data.posts,
-        //     order: data.order,
-        //     view: data.view,
-        //     pagination: {
-        //         total: data.pagination.total,
-        //         limit: data.pagination.limit
-        //     }
-        // });
-        // getData('/posts', {
-        //     params: {
-        //         _limit: this.state.pagination.limit,
-        //         _page: this.state.page,
-        //         _order: this.state.order,
-        //         _sort: 'id'
-        //     }
-        // })
-        // .then(posts => {
-        //     this.setState({
-        //         posts: posts.json,
-        //         pagination: {
-        //             total: +posts.count,
-        //             limit: this.state.pagination.limit
-        //         }
-        //     });
-        // });
-    }
 
-    onClickPagination(current, e) {
+    onClickPagination = (current, e) => {
         e.preventDefault();
         getData('/posts', {
             params: {
@@ -107,7 +74,7 @@ export class Posts extends React.Component {
                 posts: posts.json
             })
         })
-    }
+    };
 
 
     render() {
@@ -115,7 +82,7 @@ export class Posts extends React.Component {
             <main className="uk-main">
                 <div className="uk-section">
                     <div className="uk-container">
-                        <Toolbar data={this.state} onChangeSearch={this.handleSearch} onChangeToolbar={this.helperChangeToolbar}/>
+                        <Toolbar data={this.state} onChangeSearch={this.handleSearch} onChangeToolbar={(data)=>{this.setState(data)}}/>
                         <Articles posts={this.state.posts} view={this.state.view}/>
                         <Pagination
                             totalPage={Math.ceil(this.state.pagination.total / this.state.pagination.limit)}

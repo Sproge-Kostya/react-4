@@ -1,10 +1,6 @@
 import React from 'react';
 
 export class Search extends React.Component{
-    constructor(props){
-        super(props);
-    }
-
     changeEnd(e,timeout){
         let value = e.target.value.trim();
 

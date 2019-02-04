@@ -7,10 +7,10 @@ export class Comment extends React.Component {
                 <header className="uk-comment-header uk-grid uk-grid-medium uk-flex-middle">
                     <div className="uk-width-expand">
                         <h4 className="uk-comment-title uk-margin-remove">
-                            <a className="uk-link-reset" href="#">Author</a>
+                            <span className="uk-link-reset">Author</span>
                         </h4>
                         <ul className="uk-comment-meta uk-subnav uk-subnav-divider uk-margin-remove-top">
-                            <li><a href="#">Email</a></li>
+                            <li><span>Email</span></li>
                         </ul>
                     </div>
                 </header>

@@ -9,6 +9,7 @@ export class Album extends React.Component {
             photos:[]
         }
     }
+
     onClickPhotos(e){
 
         e.preventDefault();
@@ -32,6 +33,7 @@ export class Album extends React.Component {
 
         });
     }
+
     render() {
         return (
             <tr>
