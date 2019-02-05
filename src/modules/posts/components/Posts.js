@@ -62,9 +62,9 @@ export class Posts extends React.Component {
         this.setState(data);
         getData('/posts', {
             params: {
-                _limit: this.state.pagination.limit,
-                _page: this.state.page,
-                _order: this.state.order,
+                _limit: data.pagination.limit,
+                _page: data.page,
+                _order: data.order,
                 _sort: 'id'
             }
         })
@@ -106,14 +106,14 @@ export class Posts extends React.Component {
                         <Toolbar data={this.state}
                                  onChangeSearch={this.handleSearch}
                                  onChangeToolbar={this.handleToolbar}/>
-                    <Articles posts={this.state.posts} view={this.state.view}/>
-                    <Pagination
-                        totalPage={Math.ceil(this.state.pagination.total / this.state.pagination.limit)}
-                        page={this.state.page}
-                        handelClick={this.onClickPagination}/>
+                        <Articles posts={this.state.posts} view={this.state.view}/>
+                        <Pagination
+                            totalPage={Math.ceil(this.state.pagination.total / this.state.pagination.limit)}
+                            page={this.state.page}
+                            handelClick={this.onClickPagination}/>
+                    </div>
                 </div>
-            </div>
-    </main>
-    )
+            </main>
+        )
     }
 }

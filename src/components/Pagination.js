@@ -81,24 +81,26 @@ export class Pagination extends React.Component {
 
     onClick(curr, type, event) {
         if (isNaN(curr)) return;
-        const {current, totalPage} = this.state;
-        if (type === "previous" && current > 1) {
+        const {page, totalPage} = this.props;
+        if (type === "previous" && page > 1) {
             this.setState({
                 page: curr - 1,
                 pageNav: [...this.genPages(this.state.pages, curr - 1)]
             });
+            this.props.handelClick(curr - 1, event);
         } else if (type === "next" && curr < totalPage) {
             this.setState({
                 page: curr + 1,
                 pageNav: [...this.genPages(this.state.pages, curr + 1)]
             });
+            this.props.handelClick(curr + 1, event);
         } else {
             this.setState({
                 page: curr,
                 pageNav: [...this.genPages(this.state.pages, curr)]
             });
+            this.props.handelClick(curr, event);
         }
-        this.props.handelClick(curr, event);
     }
 
     render() {
