@@ -33,7 +33,7 @@ export class Post extends React.Component {
                         <Breadcrumb/>
                         <h1 className="uk-heading-bullet uk-margin-medium-bottom">
                             <span>{this.state.title}</span>
-                            <a className="uk-text-small" href="#">Author</a>
+                            <span className="uk-text-small">Author</span>
                         </h1>
                         <div className="uk-article uk-dropcap uk-margin-large-bottom">
                             <p>{this.state.body}</p>

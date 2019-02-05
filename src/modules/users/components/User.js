@@ -9,7 +9,7 @@ export class User extends React.Component{
                         <div className="uk-grid-small uk-flex-middle" data-uk-grid>
                             <div className="uk-width-auto">
                                 <img className="uk-border-circle" width="40" height="40"
-                                     src="https://picsum.photos/400/400" />
+                                     src="https://picsum.photos/400/400" alt="test"/>
                             </div>
                             <div className="uk-width-expand">
                                 <h3 className="uk-card-title uk-margin-remove-bottom">{this.props.data.name}</h3>
@@ -27,7 +27,7 @@ export class User extends React.Component{
                         </ul>
                     </div>
                     <div className="uk-card-footer">
-                        <a href="#" className="uk-button uk-button-text">Read more</a>
+                        <span className="uk-button uk-button-text">Read more</span>
                     </div>
                 </div>
             </div>

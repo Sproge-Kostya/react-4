@@ -42,7 +42,7 @@ export class Album extends React.Component {
                 </td>
                 <td>{this.props.data.title}</td>
                 <td>
-                    <a href="#" onClick={(e)=>this.onClickPhotos(e)} className="uk-button uk-button-primary js-lightbox">Open album</a>
+                    <span onClick={(e)=>this.onClickPhotos(e)} className="uk-button uk-button-primary js-lightbox">Open album</span>
                 </td>
             </tr>
         )
