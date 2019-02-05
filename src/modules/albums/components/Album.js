@@ -10,12 +10,11 @@ export class Album extends React.Component {
         }
     }
 
-    onClickPhotos(e){
-
+    onClickPhotos(e,id){
         e.preventDefault();
         getData('/photos', {
             params: {
-                albumId:1
+                albumId:id
             }
         })
         .then(data => {
@@ -42,7 +41,7 @@ export class Album extends React.Component {
                 </td>
                 <td>{this.props.data.title}</td>
                 <td>
-                    <span onClick={(e)=>this.onClickPhotos(e)} className="uk-button uk-button-primary js-lightbox">Open album</span>
+                    <span onClick={(e)=>this.onClickPhotos(e,this.props.data.id)} className="uk-button uk-button-primary js-lightbox">Open album</span>
                 </td>
             </tr>
         )
