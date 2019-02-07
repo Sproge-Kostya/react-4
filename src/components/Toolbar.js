@@ -1,5 +1,6 @@
 import React from 'react';
 import {Search, Limiter, Modes, Order} from "./index";
+import {ThemeContext} from "../context";
 
 export class Toolbar extends React.Component {
     helperChange = (key, value) => {
@@ -24,6 +25,8 @@ export class Toolbar extends React.Component {
     };
 
     render() {
+        let value = this.context;
+        console.log(value);
         return (
             <div className="uk-margin-medium-bottom uk-flex">
                 <Search handelChange={(value)=>{this.props.onChangeSearch(value)}}/>
@@ -34,3 +37,4 @@ export class Toolbar extends React.Component {
         )
     }
 }
+Toolbar.contextType = ThemeContext;
