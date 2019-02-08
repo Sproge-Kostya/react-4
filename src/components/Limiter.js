@@ -4,7 +4,7 @@ export class Limiter extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            options: ["6","12","24"]
+            options: this.props.context
         }
     }
 

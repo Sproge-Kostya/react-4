@@ -25,14 +25,37 @@ export class Toolbar extends React.Component {
     };
 
     render() {
-        let value = this.context;
-        console.log(value);
+        const toolbar = this.context.toolbar;
         return (
             <div className="uk-margin-medium-bottom uk-flex">
-                <Search handelChange={(value)=>{this.props.onChangeSearch(value)}}/>
-                <Limiter data={this.props.data.pagination.limit} handelChange={this.helperChange}/>
-                <Modes data={this.props.data.view} handelChange={this.helperChange}/>
-                <Order data={this.props.data.order} handelChange={this.helperChange}/>
+                {
+                    toolbar.Search.isActive ? (
+                        <Search handelChange={(value) => {this.props.onChangeSearch(value)}}/>
+                    ) : (
+                        null
+                    )
+                }
+                {
+                    toolbar.Limiter.isActive ? (
+                        <Limiter context={toolbar.Limiter.options} data={this.props.data.pagination.limit} handelChange={this.helperChange}/>
+                    ) : (
+                        null
+                    )
+                }
+                {
+                    toolbar.Modes.isActive ? (
+                        <Modes data={this.props.data.view} handelChange={this.helperChange}/>
+                    ) : (
+                        null
+                    )
+                }
+                {
+                    toolbar.Order.isActive ? (
+                        <Order context={toolbar.Order.options} data={this.props.data.order} handelChange={this.helperChange}/>
+                    ) : (
+                        null
+                    )
+                }
             </div>
         )
     }

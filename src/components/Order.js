@@ -3,9 +3,8 @@ import React from 'react';
 export class Order extends React.Component {
     constructor(props) {
         super(props);
-        // change context later
         this.state = {
-            options: ["asc", "desc"]
+            options: this.props.context
         }
     }
 

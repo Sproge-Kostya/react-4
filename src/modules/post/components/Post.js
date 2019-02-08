@@ -15,9 +15,7 @@ export class Post extends React.Component {
         };
     }
     componentDidMount() {
-        getData({
-            post: this.state.postId
-        })
+        getData(`/posts/${this.state.postId}`)
         .then(post => {
             this.setState({
                 title:post.title,

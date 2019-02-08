@@ -2,11 +2,13 @@ import React from "react";
 import {getData} from "../../../api/api";
 import {Articles} from "./Articles";
 import {Pagination, Toolbar} from "../../../components/index";
+import {ThemeContext,Themes} from "../../../context";
 
 export class Posts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            theme: Themes.posts,
             page: 1,
             posts: [],
             order: 'desc',
@@ -100,20 +102,22 @@ export class Posts extends React.Component {
 
     render() {
         return (
-            <main className="uk-main">
-                <div className="uk-section">
-                    <div className="uk-container">
-                        <Toolbar data={this.state}
-                                 onChangeSearch={this.handleSearch}
-                                 onChangeToolbar={this.handleToolbar}/>
-                        <Articles posts={this.state.posts} view={this.state.view}/>
-                        <Pagination
-                            totalPage={Math.ceil(this.state.pagination.total / this.state.pagination.limit)}
-                            page={this.state.page}
-                            handelClick={this.onClickPagination}/>
+            <ThemeContext.Provider value={this.state.theme}>
+                <main className="uk-main">
+                    <div className="uk-section">
+                        <div className="uk-container">
+                            <Toolbar data={this.state}
+                                     onChangeSearch={this.handleSearch}
+                                     onChangeToolbar={this.handleToolbar}/>
+                            <Articles posts={this.state.posts} view={this.state.view}/>
+                            <Pagination
+                                totalPage={Math.ceil(this.state.pagination.total / this.state.pagination.limit)}
+                                page={this.state.page}
+                                handelClick={this.onClickPagination}/>
+                        </div>
                     </div>
-                </div>
-            </main>
+                </main>
+            </ThemeContext.Provider>
         )
     }
 }

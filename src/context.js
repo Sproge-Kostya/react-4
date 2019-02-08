@@ -3,27 +3,90 @@ import React from 'react';
 export const Themes = {
     posts: {
         toolbar:{
-            isActive: true,
+            Order:{
+                isActive: true,
+                options:["asc", "desc"]
+            },
+            Modes:{
+                isActive: true
+            },
+            Search:{
+                isActive: true
+            },
+            Limiter:{
+                isActive: true,
+                options:["6","12","24"]
+            }
         }
     },
     post: {
         toolbar:{
-            isActive: true,
+            Order:{
+                isActive: false,
+                options:["asc", "desc"]
+            },
+            Modes:{
+                isActive: true
+            },
+            Search:{
+                isActive: true
+            },
+            Limiter:{
+                isActive: true,
+                options:["6","12","24"]
+            }
         }
     },
     albums:{
         toolbar:{
-            isActive: true,
+            Order:{
+                isActive: false
+            },
+            Modes:{
+                isActive: false
+            },
+            Search:{
+                isActive: true
+            },
+            Limiter:{
+                isActive: false
+            }
         }
     },
     photos:{
         toolbar:{
-            isActive: true,
+            Order:{
+                isActive: true,
+                options:["asc", "desc"]
+            },
+            Modes:{
+                isActive: true
+            },
+            Search:{
+                isActive: true
+            },
+            Limiter:{
+                isActive: true,
+                options:["6","12","24"]
+            }
         }
     },
     todos:{
         toolbar:{
-            isActive: true,
+            Order:{
+                isActive: true,
+                options:["asc", "desc"]
+            },
+            Modes:{
+                isActive: true
+            },
+            Search:{
+                isActive: true
+            },
+            Limiter:{
+                isActive: true,
+                options:["6","12","24"]
+            }
         }
     }
 };

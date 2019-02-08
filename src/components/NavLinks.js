@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 export class NavLinks extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ export class NavLinks extends React.Component {
                     this.state.items.map(function (item) {
                         return (
                             <li key={item.id}>
-                                <Link to={`${item.url}`}>{item.title}</Link>
+                                <NavLink exact to={`${item.url}`} activeClassName="uk-link-text">{item.title}</NavLink>
                             </li>
                         )
                     })
