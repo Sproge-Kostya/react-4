@@ -15,7 +15,8 @@ export class Albums extends React.Component {
             pagination: {
                 total:  1,
                 limit: 4
-            }
+            },
+            users:[]
         }
     }
 
@@ -35,6 +36,12 @@ export class Albums extends React.Component {
                 }
             });
         });
+        getData('/users')
+        .then(data => {
+            this.setState({
+                users: data.json
+            })
+        })
     }
 
     handleSearch = (value) => {

@@ -40,6 +40,12 @@ export class Posts extends React.Component {
         });
     }
 
+    handleModel = (value) => {
+        this.setState({
+            view: value
+        });
+    };
+
     handleSearch = (value) => {
         getData('/posts', {
             params: {
@@ -107,6 +113,7 @@ export class Posts extends React.Component {
                     <div className="uk-section">
                         <div className="uk-container">
                             <Toolbar data={this.state}
+                                     onChangeModel={this.handleModel}
                                      onChangeSearch={this.handleSearch}
                                      onChangeToolbar={this.handleToolbar}/>
                             <Articles posts={this.state.posts} view={this.state.view}/>

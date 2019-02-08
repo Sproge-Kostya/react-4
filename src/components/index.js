@@ -7,7 +7,7 @@ import {Toolbar} from './Toolbar';
 import {Limiter} from './Limiter';
 import {Search} from './Search';
 import {Order} from './Order';
-import {Modes} from './Modes';
+import {Model} from './Model';
 
 export {
     Logo,
@@ -19,5 +19,5 @@ export {
     Limiter,
     Search,
     Order,
-    Modes
+    Model
 }

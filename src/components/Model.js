@@ -1,6 +1,6 @@
 import React from 'react';
 
-export class Modes extends React.Component{
+export class Model extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -19,7 +19,7 @@ export class Modes extends React.Component{
                 view:'list'
             })
         }
-        this.props.handelChange('view',target);
+        this.props.handelChange(target);
     }
 
     render(){

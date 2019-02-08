@@ -7,7 +7,7 @@ export const Themes = {
                 isActive: true,
                 options:["asc", "desc"]
             },
-            Modes:{
+            Model:{
                 isActive: true
             },
             Search:{
@@ -25,7 +25,7 @@ export const Themes = {
                 isActive: false,
                 options:["asc", "desc"]
             },
-            Modes:{
+            Model:{
                 isActive: true
             },
             Search:{
@@ -42,14 +42,15 @@ export const Themes = {
             Order:{
                 isActive: false
             },
-            Modes:{
+            Model:{
                 isActive: false
             },
             Search:{
                 isActive: true
             },
             Limiter:{
-                isActive: false
+                isActive: false,
+                options:["all"]
             }
         }
     },
@@ -59,7 +60,7 @@ export const Themes = {
                 isActive: true,
                 options:["asc", "desc"]
             },
-            Modes:{
+            Model:{
                 isActive: true
             },
             Search:{
@@ -77,7 +78,7 @@ export const Themes = {
                 isActive: true,
                 options:["asc", "desc"]
             },
-            Modes:{
+            Model:{
                 isActive: true
             },
             Search:{

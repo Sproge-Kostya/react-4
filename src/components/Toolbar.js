@@ -1,5 +1,5 @@
 import React from 'react';
-import {Search, Limiter, Modes, Order} from "./index";
+import {Search, Limiter, Model, Order} from "./index";
 import {ThemeContext} from "../context";
 
 export class Toolbar extends React.Component {
@@ -43,8 +43,8 @@ export class Toolbar extends React.Component {
                     )
                 }
                 {
-                    toolbar.Modes.isActive ? (
-                        <Modes data={this.props.data.view} handelChange={this.helperChange}/>
+                    toolbar.Model.isActive ? (
+                        <Model data={this.props.data.view} handelChange={(value) => {this.props.onChangeModel(value)}}/>
                     ) : (
                         null
                     )
