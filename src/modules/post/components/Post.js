@@ -28,7 +28,7 @@ export class Post extends React.Component {
             <main className="uk-main">
                 <div className="uk-section">
                     <div className="uk-container">
-                        <Breadcrumb/>
+                        <Breadcrumb url={this.props.match.url}/>
                         <h1 className="uk-heading-bullet uk-margin-medium-bottom">
                             <span>{this.state.title}</span>
                             <span className="uk-text-small">Author</span>

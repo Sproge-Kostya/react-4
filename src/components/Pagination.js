@@ -4,8 +4,8 @@ export class Pagination extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            page: this.props.page || 1,
-            totalPage: this.props.totalPage,
+            page: props.pagination.page || 1,
+            totalPage: Math.ceil(props.pagination.total / props.pagination.limit),
             pages: [],
             pageNav: []
         };
@@ -13,23 +13,30 @@ export class Pagination extends React.Component {
 
     componentDidMount() {
         this.setState({
-            pages: [...this.generateArray(this.props.totalPage)]
+            pages: [...this.generateArray(this.state.totalPage)]
         });
         this.setState((state) => {
             return {
-                pageNav: [...this.genPages(state.pages, this.props.page)]
+                pageNav: [...this.genPages(state.pages, this.state.page)]
             };
         });
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.totalPage !== prevProps.totalPage) {
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.pagination.total !== this.props.pagination.total) {
             this.setState({
-                pages: [...this.generateArray(this.props.totalPage)]
+                totalPage: Math.ceil(this.props.pagination.total / this.props.pagination.limit)
             });
+        }
+        if (prevState.totalPage !== this.state.totalPage) {
+            this.setState({
+                pages: [...this.generateArray(this.state.totalPage)]
+            });
+        }
+        if (prevState.pages !== this.state.pages) {
             this.setState((state) => {
                 return {
-                    pageNav: [...this.genPages(state.pages, this.props.page)]
+                    pageNav: [...this.genPages(state.pages, this.state.page)]
                 };
             });
         }
@@ -44,7 +51,7 @@ export class Pagination extends React.Component {
     }
 
     genPages(pages, current) {
-        const totalPage = this.props.totalPage;
+        const totalPage = this.state.totalPage;
         const first = page => page === 1;
         const middle = (page, between) => page > between.bet && page <= between.ween;
         const last = page => page === totalPage;
@@ -62,26 +69,35 @@ export class Pagination extends React.Component {
             between.bet = current - 4;
             between.ween = current + 3;
         }
+
         const allPages = pages.filter(
             page => first(page) || middle(page, between) || last(page)
         );
-        return this.addEtc(allPages);
+        const newPages = allPages.map(page => {
+            if (first(page) || middle(page, between) || last(page)) {
+                return {
+                    id: page,
+                    value: page
+                };
+            }
+        });
+        return this.addEtc(newPages);
     }
 
     addEtc(pages) {
         if (pages.length <= 1) {
             return pages;
         }
-        let lastPage = pages[pages.length - 1];
-        let secondLast = pages[pages.length - 2];
-        pages[0] + 1 !== pages[1] && pages.splice(1, 0, "...");
-        lastPage !== secondLast + 1 && pages.splice(pages.length - 1, 0, "...");
+        let lastPage = pages[pages.length - 1]['id'];
+        let secondLast = pages[pages.length - 2]['id'];
+        pages[0]['id'] + 1 !== pages[1]['id'] && pages.splice(1, 0, {id: '...',value:'previous'});
+        lastPage !== secondLast + 1 && pages.splice(pages.length - 1, 0, {id: '...',value:'next'});
         return pages;
     }
 
     onClick(curr, type, event) {
         if (isNaN(curr)) return;
-        const {page, totalPage} = this.props;
+        const {page, totalPage} = this.state;
         if (type === "previous" && page > 1) {
             this.setState({
                 page: curr - 1,
@@ -106,58 +122,50 @@ export class Pagination extends React.Component {
     render() {
         return (
             <ul className="uk-pagination uk-flex-center" data-uk-margin>
-                <li onClick={(e) => this.onClick(this.state.page, 'previous', e)}>
-                    <span >
-                        <span data-uk-pagination-previous>
-                            <svg
-                                width={7}
-                                height={12}
-                                viewBox="0 0 7 12"
-                                xmlns="http://www.w3.org/2000/svg"
-                                ratio={1}
-                            >
-                            <polyline
-                                fill="none"
-                                stroke="#000"
-                                strokeWidth="1.2"
-                                points="6 1 1 6 6 11"
-                            />
-                            </svg>
-                        </span>
-                    </span>
-                </li>
+                {
+                    this.state.page > 1 ? (
+                        <li onClick={(e) => this.onClick(this.state.page, 'previous', e)}>
+                            <span>
+                                <span data-uk-pagination-previous>
+                                    <svg width={7} height={12} viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg"
+                                         ratio={1}>
+                                        <polyline fill="none" stroke="#000" strokeWidth="1.2" points="6 1 1 6 6 11"/>
+                                    </svg>
+                                </span>
+                            </span>
+                        </li>
+                    ) : (
+                        null
+                    )
+                }
                 {
                     this.state.pageNav.map(page => {
                         return (
-                            <li key={page} onClick={(e) => this.onClick(Number(page), '', e)}
-                                className={page === this.props.page ? 'uk-active' : ''}>
+                            <li key={page.value} onClick={(e) => this.onClick(Number(page.value), '', e)}
+                                className={page.value === this.state.page ? 'uk-active' : ''}>
                                 <span>
-                                    {page}
+                                    {page.id}
                                 </span>
                             </li>
                         );
                     })
                 }
-                <li onClick={(e) => this.onClick(this.state.page, 'next', e)}>
-                    <span>
-                        <span data-uk-pagination-next>
-                            <svg
-                                width={7}
-                                height={12}
-                                viewBox="0 0 7 12"
-                                xmlns="http://www.w3.org/2000/svg"
-                                ratio={1}
-                            >
-                            <polyline
-                                fill="none"
-                                stroke="#000"
-                                strokeWidth="1.2"
-                                points="1 1 6 6 1 11"
-                            />
-                            </svg>
-                        </span>
-                    </span>
-                </li>
+                {
+                    this.state.page < this.state.totalPage ? (
+                        <li onClick={(e) => this.onClick(this.state.page, 'next', e)}>
+                            <span>
+                                <span data-uk-pagination-next>
+                                    <svg width={7} height={12} viewBox="0 0 7 12" xmlns="http://www.w3.org/2000/svg"
+                                         ratio={1}>
+                                        <polyline fill="none" stroke="#000" strokeWidth="1.2" points="1 1 6 6 1 11"/>
+                                    </svg>
+                                </span>
+                            </span>
+                        </li>
+                    ) : (
+                        null
+                    )
+                }
             </ul>
         );
     }

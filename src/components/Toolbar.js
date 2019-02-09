@@ -37,7 +37,7 @@ export class Toolbar extends React.Component {
                 }
                 {
                     toolbar.Limiter.isActive ? (
-                        <Limiter context={toolbar.Limiter.options} data={this.props.data.pagination.limit} handelChange={this.helperChange}/>
+                        <Limiter context={toolbar.Limiter} data={this.props.data.pagination.limit} handelChange={this.helperChange}/>
                     ) : (
                         null
                     )

@@ -7,7 +7,6 @@ import {ThemeContext, Themes} from "../../../context";
 export class Albums extends React.Component {
     constructor(props){
         super(props);
-        this.onClickPagination = this.onClickPagination.bind(this);
         this.state ={
             theme: Themes.albums,
             albums:[],
@@ -15,9 +14,20 @@ export class Albums extends React.Component {
             pagination: {
                 total:  1,
                 limit: 4
-            },
-            users:[]
+            }
         }
+    }
+
+    componentWillMount(){
+        getData('/users')
+        .then(data => {
+            Themes.albums.toolbar.Limiter.options = data.json.map((user)=>{
+                return {
+                    id: user.id,
+                    value: user.name
+                }
+            });
+        })
     }
 
     componentDidMount() {
@@ -26,8 +36,7 @@ export class Albums extends React.Component {
                 _limit: this.state.pagination.limit,
                 _page: this.state.page,
             }
-        })
-        .then(albums => {
+        }).then(albums => {
             this.setState({
                 albums: albums.json,
                 pagination: {
@@ -36,12 +45,7 @@ export class Albums extends React.Component {
                 }
             });
         });
-        getData('/users')
-        .then(data => {
-            this.setState({
-                users: data.json
-            })
-        })
+
     }
 
     handleSearch = (value) => {
@@ -83,7 +87,7 @@ export class Albums extends React.Component {
         });
     };
 
-    onClickPagination(current, e) {
+    onClickPagination = (current, e) => {
         e.preventDefault();
         getData('/albums', {
             params: {
@@ -97,7 +101,7 @@ export class Albums extends React.Component {
                 albums: albums.json
             });
         });
-    }
+    };
 
     render() {
         return (
@@ -113,8 +117,7 @@ export class Albums extends React.Component {
                             })}
                         </tbody>
                     </table>
-                    <Pagination totalPage={Math.ceil(this.state.pagination.total / this.state.pagination.limit)}
-                                page={this.state.page}
+                    <Pagination pagination={{limit: this.state.pagination.limit,page:  this.state.page,total: this.state.pagination.total}}
                                 handelClick={this.onClickPagination}/>
                 </div>
             </ThemeContext.Provider>

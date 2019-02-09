@@ -2,91 +2,96 @@ import React from 'react';
 
 export const Themes = {
     posts: {
-        toolbar:{
-            Order:{
+        toolbar: {
+            Order: {
                 isActive: true,
-                options:["asc", "desc"]
+                options: ["asc", "desc"]
             },
             Model:{
                 isActive: true
             },
-            Search:{
+            Search: {
                 isActive: true
             },
-            Limiter:{
+            Limiter: {
                 isActive: true,
-                options:["6","12","24"]
+                isAll: false,
+                options: ["6", "12", "24"]
             }
         }
     },
     post: {
-        toolbar:{
-            Order:{
+        toolbar: {
+            Order: {
                 isActive: false,
-                options:["asc", "desc"]
+                options: ["asc", "desc"]
             },
             Model:{
                 isActive: true
             },
-            Search:{
+            Search: {
                 isActive: true
             },
-            Limiter:{
+            Limiter: {
                 isActive: true,
-                options:["6","12","24"]
+                isAll: false,
+                options: ["6", "12", "24"]
             }
         }
     },
-    albums:{
-        toolbar:{
-            Order:{
+    albums: {
+        toolbar: {
+            Order: {
                 isActive: false
             },
             Model:{
                 isActive: false
             },
-            Search:{
+            Search: {
                 isActive: true
             },
-            Limiter:{
-                isActive: false,
-                options:["all"]
+            Limiter: {
+                isActive: true,
+                isAll: true,
+                options:[]
             }
         }
     },
-    photos:{
-        toolbar:{
-            Order:{
+    photos: {
+        toolbar: {
+            Order: {
                 isActive: true,
-                options:["asc", "desc"]
+                options: ["asc", "desc"]
             },
             Model:{
                 isActive: true
             },
-            Search:{
+            Search: {
                 isActive: true
             },
-            Limiter:{
+            Limiter: {
                 isActive: true,
-                options:["6","12","24"]
+                isAll: false,
+                options: ["6", "12", "24"]
             }
         }
     },
-    todos:{
-        toolbar:{
-            Order:{
+    todos: {
+        toolbar: {
+            Order: {
                 isActive: true,
-                options:["asc", "desc"]
+                options: ["asc", "desc"]
             },
             Model:{
                 isActive: true
             },
-            Search:{
+            Search: {
                 isActive: true
             },
-            Limiter:{
+            Limiter: {
                 isActive: true,
-                options:["6","12","24"]
+                isAll: false,
+                options: ["6", "12", "24"]
             }
         }
     }

@@ -117,10 +117,8 @@ export class Posts extends React.Component {
                                      onChangeSearch={this.handleSearch}
                                      onChangeToolbar={this.handleToolbar}/>
                             <Articles posts={this.state.posts} view={this.state.view}/>
-                            <Pagination
-                                totalPage={Math.ceil(this.state.pagination.total / this.state.pagination.limit)}
-                                page={this.state.page}
-                                handelClick={this.onClickPagination}/>
+                            <Pagination pagination={{limit: this.state.pagination.limit,page:  this.state.page,total: this.state.pagination.total}}
+                                        handelClick={this.onClickPagination}/>
                         </div>
                     </div>
                 </main>
