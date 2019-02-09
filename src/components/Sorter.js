@@ -1,16 +1,17 @@
 import React from 'react';
 
-export class Limiter extends React.Component {
+export class Sorter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             context: this.props.context
         };
+        console.log(this.props.context);
     }
 
     render() {
         return (
-            <select name="limit" className="uk-select uk-width-small uk-margin-left"
+            <select name="sorter" className="uk-select uk-width-small uk-margin-left"
                     onChange={(e) => this.props.handelChange(this.props.context.helper, e.target.value)}
                     value={this.props.data}>
                 {

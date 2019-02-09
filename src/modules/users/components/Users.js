@@ -60,7 +60,6 @@ export class Users extends React.Component{
         });
     }
     render(){
-        console.log(this.state.users);
         return(
             <div>
                 <div className="uk-grid uk-child-width-1-2@s uk-child-width-1-2@m" data-uk-grid>
@@ -68,8 +67,11 @@ export class Users extends React.Component{
                         return <User key={item.id} data={item}/>
                     })}
                 </div>
-                <Pagination totalPage={Math.ceil(this.state.pagination.total / this.state.pagination.limit)}
-                            page={this.state.page}
+                <Pagination pagination={{
+                                limit: this.state.pagination.limit,
+                                page: this.state.page,
+                                total: this.state.pagination.total
+                            }}
                             handelClick={this.onClickPagination}/>
             </div>
         )

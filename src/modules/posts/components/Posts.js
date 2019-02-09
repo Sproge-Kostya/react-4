@@ -2,17 +2,17 @@ import React from "react";
 import {getData} from "../../../api/api";
 import {Articles} from "./Articles";
 import {Pagination, Toolbar} from "../../../components/index";
-import {ThemeContext,Themes} from "../../../context";
+import {ThemeContext, Themes} from "../../../context";
 
 export class Posts extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             theme: Themes.posts,
-            page: 1,
             posts: [],
-            order: 'desc',
+            order: 'asc',
             view: 'grid',
+            page: 1,
             pagination: {
                 total: 1,
                 limit: 6
@@ -29,15 +29,15 @@ export class Posts extends React.Component {
                 _sort: 'id'
             }
         })
-        .then(posts => {
-            this.setState({
-                posts: posts.json,
-                pagination: {
-                    total: +posts.count,
-                    limit: this.state.pagination.limit
-                }
+            .then(posts => {
+                this.setState({
+                    posts: posts.json,
+                    pagination: {
+                        total: +posts.count,
+                        limit: this.state.pagination.limit
+                    }
+                });
             });
-        });
     }
 
     handleModel = (value) => {
@@ -55,15 +55,15 @@ export class Posts extends React.Component {
                 q: value
             }
         })
-        .then(posts => {
-            this.setState({
-                posts: posts.json,
-                pagination: {
-                    total: +posts.count,
-                    limit: this.state.pagination.limit
-                }
+            .then(posts => {
+                this.setState({
+                    posts: posts.json,
+                    pagination: {
+                        total: +posts.count,
+                        limit: this.state.pagination.limit
+                    }
+                });
             });
-        });
     };
 
     handleToolbar = (data) => {
@@ -76,15 +76,15 @@ export class Posts extends React.Component {
                 _sort: 'id'
             }
         })
-        .then(posts => {
-            this.setState({
-                posts: posts.json,
-                pagination: {
-                    total: +posts.count,
-                    limit: this.state.pagination.limit
-                }
+            .then(posts => {
+                this.setState({
+                    posts: posts.json,
+                    pagination: {
+                        total: +posts.count,
+                        limit: this.state.pagination.limit
+                    }
+                })
             })
-        })
     };
 
 
@@ -97,12 +97,12 @@ export class Posts extends React.Component {
                 _order: this.state.order
             }
         })
-        .then(posts => {
-            this.setState({
-                page: current,
-                posts: posts.json
+            .then(posts => {
+                this.setState({
+                    page: current,
+                    posts: posts.json
+                })
             })
-        })
     };
 
 
@@ -117,7 +117,11 @@ export class Posts extends React.Component {
                                      onChangeSearch={this.handleSearch}
                                      onChangeToolbar={this.handleToolbar}/>
                             <Articles posts={this.state.posts} view={this.state.view}/>
-                            <Pagination pagination={{limit: this.state.pagination.limit,page:  this.state.page,total: this.state.pagination.total}}
+                            <Pagination pagination={{
+                                limit: this.state.pagination.limit,
+                                page: this.state.page,
+                                total: this.state.pagination.total
+                            }}
                                         handelClick={this.onClickPagination}/>
                         </div>
                     </div>

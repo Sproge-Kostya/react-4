@@ -1,10 +1,13 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import {Navigation} from "../context";
 
 export class NavLinks extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {items: this.props.data};
+        this.state = {
+            items: Navigation
+        };
     }
     render() {
         return (

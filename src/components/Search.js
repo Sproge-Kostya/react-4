@@ -1,6 +1,12 @@
 import React from 'react';
 
 export class Search extends React.Component{
+    constructor(props){
+        super(props);
+        this.state ={
+            context: this.props.context
+        }
+    }
     changeEnd(e,timeout){
         let value = e.target.value.trim();
 
@@ -13,7 +19,7 @@ export class Search extends React.Component{
 
     render() {
         return (
-            <form className="uk-width-medium uk-margin-right">
+            <form className={this.state.context.className}>
                 <input className="uk-input" type="search"
                        onChange={(e) => { this.changeEnd(e, 1000)}}
                        placeholder="Search..."/>

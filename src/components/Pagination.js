@@ -23,7 +23,7 @@ export class Pagination extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.pagination.total !== this.props.pagination.total) {
+        if (prevProps.pagination !== this.props.pagination) {
             this.setState({
                 totalPage: Math.ceil(this.props.pagination.total / this.props.pagination.limit)
             });
@@ -72,16 +72,16 @@ export class Pagination extends React.Component {
 
         const allPages = pages.filter(
             page => first(page) || middle(page, between) || last(page)
-        );
-        const newPages = allPages.map(page => {
+        ).map((page) => {
             if (first(page) || middle(page, between) || last(page)) {
                 return {
                     id: page,
                     value: page
-                };
+                }
             }
+            return false;
         });
-        return this.addEtc(newPages);
+        return this.addEtc(allPages);
     }
 
     addEtc(pages) {
@@ -90,8 +90,8 @@ export class Pagination extends React.Component {
         }
         let lastPage = pages[pages.length - 1]['id'];
         let secondLast = pages[pages.length - 2]['id'];
-        pages[0]['id'] + 1 !== pages[1]['id'] && pages.splice(1, 0, {id: '...',value:'previous'});
-        lastPage !== secondLast + 1 && pages.splice(pages.length - 1, 0, {id: '...',value:'next'});
+        pages[0]['id'] + 1 !== pages[1]['id'] && pages.splice(1, 0, {id: '...', value: 'previous'});
+        lastPage !== secondLast + 1 && pages.splice(pages.length - 1, 0, {id: '...', value: 'next'});
         return pages;
     }
 

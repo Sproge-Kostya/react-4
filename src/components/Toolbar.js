@@ -30,7 +30,14 @@ export class Toolbar extends React.Component {
             <div className="uk-margin-medium-bottom uk-flex">
                 {
                     toolbar.Search.isActive ? (
-                        <Search handelChange={(value) => {this.props.onChangeSearch(value)}}/>
+                        <Search context={toolbar.Search} handelChange={(value) => {this.props.onChangeSearch(value)}}/>
+                    ) : (
+                        null
+                    )
+                }
+                {
+                    toolbar.Order.isActive ? (
+                        <Order context={toolbar.Order} data={this.props.data.order} handelChange={this.helperChange}/>
                     ) : (
                         null
                     )
@@ -44,14 +51,7 @@ export class Toolbar extends React.Component {
                 }
                 {
                     toolbar.Model.isActive ? (
-                        <Model data={this.props.data.view} handelChange={(value) => {this.props.onChangeModel(value)}}/>
-                    ) : (
-                        null
-                    )
-                }
-                {
-                    toolbar.Order.isActive ? (
-                        <Order context={toolbar.Order.options} data={this.props.data.order} handelChange={this.helperChange}/>
+                        <Model context={toolbar.Model} data={this.props.data.view} handelChange={(value) => {this.props.onChangeModel(value)}}/>
                     ) : (
                         null
                     )

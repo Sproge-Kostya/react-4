@@ -11,6 +11,7 @@ export class Albums extends React.Component {
             theme: Themes.albums,
             albums:[],
             page:1,
+            sorter:'all',
             pagination: {
                 total:  1,
                 limit: 4
@@ -106,20 +107,18 @@ export class Albums extends React.Component {
     render() {
         return (
             <ThemeContext.Provider value={this.state.theme}>
-                <div>
-                    <Toolbar data={this.state}
-                             onChangeSearch={this.handleSearch}
-                             onChangeToolbar={this.handleToolbar}/>
-                    <table className="uk-table uk-table-justify uk-table-divider">
-                        <tbody>
-                            {this.state.albums.map(function(item) {
-                                return <Album key={item.id} data={item}/>
-                            })}
-                        </tbody>
-                    </table>
-                    <Pagination pagination={{limit: this.state.pagination.limit,page:  this.state.page,total: this.state.pagination.total}}
-                                handelClick={this.onClickPagination}/>
-                </div>
+                <Toolbar data={this.state}
+                         onChangeSearch={this.handleSearch}
+                         onChangeToolbar={this.handleToolbar}/>
+                <table className="uk-table uk-table-justify uk-table-divider">
+                    <tbody>
+                        {this.state.albums.map(function(item) {
+                            return <Album key={item.id} data={item}/>
+                        })}
+                    </tbody>
+                </table>
+                <Pagination pagination={{limit: this.state.pagination.limit,page:  this.state.page,total: this.state.pagination.total}}
+                            handelClick={this.onClickPagination}/>
             </ThemeContext.Provider>
         )
     }
