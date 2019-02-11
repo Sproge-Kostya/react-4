@@ -1,5 +1,5 @@
 import React from 'react';
-import {Search, Limiter, Model, Order} from "./index";
+import {Search, Limiter, Model, Order, Sorter,CurrentPage} from "./index";
 import {ThemeContext} from "../context";
 
 export class Toolbar extends React.Component {
@@ -36,8 +36,27 @@ export class Toolbar extends React.Component {
                     )
                 }
                 {
+                    toolbar.CurrentPage.isActive ? (
+                        <CurrentPage pagination={{
+                            limit: this.props.data.pagination.limit,
+                            page: this.props.data.page,
+                            total: this.props.data.pagination.total
+                        }}
+                        context={toolbar.CurrentPage}  handelChange={this.helperChange}/>
+                    ) : (
+                        null
+                    )
+                }
+                {
                     toolbar.Order.isActive ? (
                         <Order context={toolbar.Order} data={this.props.data.order} handelChange={this.helperChange}/>
+                    ) : (
+                        null
+                    )
+                }
+                {
+                    toolbar.Sorter.isActive ? (
+                        <Sorter context={toolbar.Sorter} data={this.props.data} handelChange={this.props.onChangeSorter}/>
                     ) : (
                         null
                     )

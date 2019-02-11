@@ -38,6 +38,12 @@ export const Themes = {
                 isActive: true,
                 className: "uk-button-group uk-margin-left"
             },
+            CurrentPage:{
+                isActive: false
+            },
+            Sorter:{
+                isActive: false
+            },
             Search: {
                 isActive: true,
                 className: "uk-width-medium uk-margin-right"
@@ -51,8 +57,6 @@ export const Themes = {
             }
         }
     },
-    post: {
-    },
     albums: {
         toolbar: {
             Order: {
@@ -61,35 +65,47 @@ export const Themes = {
             Model:{
                 isActive: false
             },
+            CurrentPage:{
+                isActive: false
+            },
+            Sorter:{
+                isActive: true,
+                isAll: true,
+                helper:'userId',
+                options:[]
+            },
             Search: {
                 isActive: true,
                 className: "uk-width-medium uk-margin-auto-right"
             },
             Limiter: {
-                isActive: true,
-                helper:'sorter',
-                isAll: true,
-                options:[]
+                isActive: false
             }
         }
     },
     photos: {
         toolbar: {
             Order: {
-                isActive: true,
-                options: ["asc", "desc"]
+                isActive: false,
             },
             Model:{
-                isActive: true
+                isActive: false
+            },
+            CurrentPage:{
+                isActive: false
+            },
+            Sorter:{
+                isActive: true,
+                isAll: true,
+                helper:'albumId',
+                options:[]
             },
             Search: {
-                isActive: true
+                isActive: true,
+                className: "uk-width-medium uk-margin-auto-right"
             },
             Limiter: {
-                isActive: true,
-                helper:'pagination.limit',
-                isAll: false,
-                options: ["6", "12", "24"]
+                isActive: false
             }
         }
     },
@@ -101,14 +117,20 @@ export const Themes = {
             Model:{
                 isActive: false
             },
+            CurrentPage:{
+                isActive: true
+            },
+            Sorter:{
+                isActive: true,
+                isAll: true,
+                helper:'userId',
+                options:[]
+            },
             Search: {
                 isActive: false
             },
             Limiter: {
-                isActive: true,
-                helper:'pagination.limit',
-                isAll: true,
-                options: []
+                isActive: false
             }
         }
     }

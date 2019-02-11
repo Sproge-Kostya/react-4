@@ -8,11 +8,14 @@ export function getData(path,options) {
 
     if(options && options.hasOwnProperty('params')){
         for (let key in options.params) {
-            if (params !== "") {
-                params += "&";
+            if(options.params[key] !== 'all'){
+                if (params !== "") {
+                    params += "&";
+                }
+                params += key + "=" + options.params[key];
+            }else{
+                continue;
             }
-            params += key + "=" + options.params[key];
-
         }
         url += `${params ? '?' + params : ''}`;
     }

@@ -11,11 +11,11 @@ export class Limiter extends React.Component {
     render() {
         return (
             <select name="limit" className="uk-select uk-width-small uk-margin-left"
-                    onChange={(e) => this.props.handelChange(this.props.context.helper, e.target.value)}
+                    onChange={(e) => this.props.handelChange('pagination.limit', e.target.value)}
                     value={this.props.data}>
                 {
                     this.state.context.isAll ? (
-                        <option key="all" value="">All</option>
+                        <option key="all" value="all">All</option>
                     ) : (
                         null
                     )

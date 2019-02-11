@@ -6,17 +6,16 @@ export class Sorter extends React.Component {
         this.state = {
             context: this.props.context
         };
-        console.log(this.props.context);
     }
 
     render() {
         return (
             <select name="sorter" className="uk-select uk-width-small uk-margin-left"
                     onChange={(e) => this.props.handelChange(this.props.context.helper, e.target.value)}
-                    value={this.props.data}>
+                    value={this.props.data.sorter}>
                 {
                     this.state.context.isAll ? (
-                        <option key="all" value="">All</option>
+                        <option key="all" value="all">All</option>
                     ) : (
                         null
                     )

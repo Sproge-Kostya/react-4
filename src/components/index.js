@@ -8,6 +8,8 @@ import {Limiter} from './Limiter';
 import {Search} from './Search';
 import {Order} from './Order';
 import {Model} from './Model';
+import {Sorter} from './Sorter';
+import {CurrentPage} from './CurrentPage';
 
 export {
     Logo,
@@ -19,5 +21,7 @@ export {
     Limiter,
     Search,
     Order,
-    Model
+    Model,
+    Sorter,
+    CurrentPage
 }

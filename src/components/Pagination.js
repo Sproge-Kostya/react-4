@@ -25,6 +25,7 @@ export class Pagination extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.pagination !== this.props.pagination) {
             this.setState({
+                page:this.props.pagination.page,
                 totalPage: Math.ceil(this.props.pagination.total / this.props.pagination.limit)
             });
         }
