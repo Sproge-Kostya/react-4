@@ -1,6 +1,18 @@
 import React from 'react';
 import {Search, Limiter, Model, Order, Sorter,CurrentPage} from "./index";
 import {ThemeContext} from "../context";
+import {getData} from "../api/api";
+
+export const toolbar = React.createContext({
+    handleSearch: (url,value,params,callback) => {
+        getData(url, {
+            params: params
+        })
+        .then(data => {
+            this.setState(callback);
+        });
+    }
+});
 
 export class Toolbar extends React.Component {
     helperChange = (key, value) => {

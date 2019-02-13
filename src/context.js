@@ -39,7 +39,7 @@ export const Themes = {
                 className: "uk-button-group uk-margin-left"
             },
             CurrentPage:{
-                isActive: false
+                isActive: false,
             },
             Sorter:{
                 isActive: false
@@ -72,7 +72,8 @@ export const Themes = {
                 isActive: true,
                 isAll: true,
                 helper:'userId',
-                options:[]
+                options:[],
+                className: "uk-select uk-width-small uk-margin-left"
             },
             Search: {
                 isActive: true,
@@ -98,7 +99,8 @@ export const Themes = {
                 isActive: true,
                 isAll: true,
                 helper:'albumId',
-                options:[]
+                options:[],
+                className: "uk-select uk-width-small uk-margin-left"
             },
             Search: {
                 isActive: true,
@@ -118,13 +120,15 @@ export const Themes = {
                 isActive: false
             },
             CurrentPage:{
-                isActive: true
+                isActive: true,
+                className:"uk-pagination uk-flex-center uk-margin-auto-right"
             },
             Sorter:{
                 isActive: true,
                 isAll: true,
                 helper:'userId',
-                options:[]
+                options:[],
+                className: "uk-select uk-width-small uk-margin-left"
             },
             Search: {
                 isActive: false
