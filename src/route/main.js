@@ -1,6 +1,6 @@
 import React from "react";
 import {Switch, Route} from 'react-router-dom';
-import {Posts,Post,Albums,Photos,Cards,Users,Error} from '../modules/index';
+import {Posts,Post,Albums,Photos,Cards,Users,Error,TodoApp} from '../modules/index';
 
 export class Main extends React.Component {
     render() {
@@ -16,6 +16,7 @@ export class Main extends React.Component {
                             <Route path='/photos' component={Photos}/>
                             <Route path='/todos' component={Cards}/>
                             <Route path='/users' component={Users}/>
+                            <Route path='/todo' component={TodoApp}/>
                             <Route component={Error}/>
                         </Switch>
                     </div>

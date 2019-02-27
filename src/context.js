@@ -24,6 +24,11 @@ export const Navigation = [
         id: 4,
         title: 'Todos',
         url: '/todos'
+    },
+    {
+        id: 5,
+        title: 'Todo',
+        url: '/todo'
     }
 ];
 export const Themes = {

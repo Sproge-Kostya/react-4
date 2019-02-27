@@ -3,16 +3,34 @@ import {Search, Limiter, Model, Order, Sorter,CurrentPage} from "./index";
 import {ThemeContext} from "../context";
 import {getData} from "../api/api";
 
-export const toolbar = React.createContext({
-    handleSearch: (url,value,params,callback) => {
-        getData(url, {
-            params: params
-        })
-        .then(data => {
-            this.setState(callback);
-        });
-    }
-});
+// export const toolbar = React.createContext({
+//     handleSearch: (url,value,params,callback) => {
+//         getData(url, {
+//             params: params
+//         })
+//         .then(data => {
+//             this.setState(callback);
+//         });
+//     },
+//     handleSorter: (url,value,params,callback) => {
+//         getData('/photos', {
+//             params: {
+//                 _limit: this.state.pagination.limit,
+//                 _page: this.state.page,
+//                 [key]: value
+//             }
+//         }).then(data => {
+//             this.setState({
+//                 photos: data.json,
+//                 sorter: value,
+//                 pagination: {
+//                     total: data.count,
+//                     limit: this.state.pagination.limit
+//                 }
+//             });
+//         });
+//     };
+// });
 
 export class Toolbar extends React.Component {
     helperChange = (key, value) => {
